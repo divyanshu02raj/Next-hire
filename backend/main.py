@@ -14,13 +14,10 @@ load_dotenv()
 
 # --- Gemini API Configuration ---
 try:
-    gemini_api_key = os.environ["GOOGLE_API_KEY"]
-    if not gemini_api_key:
-        raise KeyError
-    genai.configure(api_key=gemini_api_key)
+    genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
     model = genai.GenerativeModel('gemini-1.5-flash')
 except KeyError:
-    raise RuntimeError("GOOGLE_API_KEY not found or is empty. Please ensure it's in a .env file in your backend directory.")
+    raise RuntimeError("GOOGLE_API_KEY not found. Please ensure it's in a .env file in your backend directory.")
 
 
 # --- FastAPI App Initialization ---
@@ -30,24 +27,20 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# --- CORS Configuration from Environment Variable ---
-# Read the comma-separated string from the environment variable
-cors_origins_str = os.getenv("CORS_ORIGINS", "") 
-# Split the string into a list of origins
-origins = [origin.strip() for origin in cors_origins_str.split(",") if origin]
-
-# If no origins are specified in the .env, default to a restrictive policy for safety
-if not origins:
-    print("Warning: CORS_ORIGINS environment variable not set. No origins will be allowed.")
-    origins = []
-
+# --- CORS (Cross-Origin Resource Sharing) Configuration ---
+# This is the key to fixing the deployment error.
+# You must add your public Vercel frontend URL to this list.
+origins = [
+    "http://localhost:3000",  # For local development
+    "https://next-hire-lilac.vercel.app", # Your production frontend URL
+]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"], 
-    allow_headers=["*"],
+    allow_methods=["*"], # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"], # Allows all headers
 )
 
 # --- Helper function for AI parsing ---
