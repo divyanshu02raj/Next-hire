@@ -3,22 +3,20 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useResumeStore } from '../store/resumeStore'; // Corrected import path
-import { User, Mail, Phone, Linkedin, Briefcase, GraduationCap, Lightbulb } from 'lucide-react';
+import { useResumeStore } from '../store/resumeStore';
+// Removed unused icons: Mail, Phone, Linkedin
+import { User, Briefcase, GraduationCap, Lightbulb } from 'lucide-react';
 
 export default function DashboardPage() {
   const { resumeData } = useResumeStore();
   const router = useRouter();
 
-  // If there's no data in the store, redirect back to the home page.
-  // This prevents users from accessing the page directly without uploading a resume.
   useEffect(() => {
     if (!resumeData) {
       router.push('/');
     }
   }, [resumeData, router]);
 
-  // Show a loading state if data is not yet available
   if (!resumeData) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-light dark:bg-dark text-dark dark:text-light">
@@ -31,13 +29,12 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-light dark:bg-dark text-dark dark:text-light font-secondary p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto">
         
-        {/* Header Section */}
         <div className="text-center mb-10">
           <h1 className="font-primary text-4xl sm:text-5xl md:text-6xl text-primary mb-2">Resume Analysis</h1>
-          <p className="text-stone-500">Here's what our AI extracted from your resume.</p>
+          {/* Corrected the unescaped apostrophe */}
+          <p className="text-stone-500">Here&apos;s what our AI extracted from your resume.</p>
         </div>
 
-        {/* Personal Details Section */}
         <div className="bg-white/[0.05] p-6 rounded-2xl shadow-lg mb-8">
           <h2 className="text-2xl font-primary mb-6 flex items-center"><User className="mr-3 text-primary" /> Personal Details</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg">
@@ -48,7 +45,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Skills Section */}
         <div className="bg-white/[0.05] p-6 rounded-2xl shadow-lg mb-8">
           <h2 className="text-2xl font-primary mb-4 flex items-center"><Lightbulb className="mr-3 text-primary" /> Skills</h2>
           <div className="flex flex-wrap gap-2">
@@ -64,7 +60,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Work Experience Section */}
         <div className="bg-white/[0.05] p-6 rounded-2xl shadow-lg mb-8">
           <h2 className="text-2xl font-primary mb-6 flex items-center"><Briefcase className="mr-3 text-primary" /> Work Experience</h2>
           <div className="space-y-6">
@@ -85,7 +80,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Education Section */}
         <div className="bg-white/[0.05] p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-primary mb-6 flex items-center"><GraduationCap className="mr-3 text-primary" /> Education</h2>
           <div className="space-y-4">

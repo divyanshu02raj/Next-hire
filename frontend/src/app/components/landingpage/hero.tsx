@@ -3,16 +3,21 @@
 
 import { Bookmark, Sun, Moon, Loader2 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { useRouter } from 'next/navigation'; // Import the router
-import { useResumeStore } from '@/app/store/resumeStore'; // Corrected import path
+import { useRouter } from 'next/navigation';
+import { useResumeStore } from '@/app/store/resumeStore';
+
+// Define a specific type for the PDF text items
+type PdfTextItem = {
+    str: string;
+};
 
 export default function Hero() {
     const [isDark, setIsDark] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const router = useRouter(); // Initialize the router
-    const { setResumeData } = useResumeStore(); // Get the action from our store
+    const router = useRouter();
+    const { setResumeData } = useResumeStore();
 
     useEffect(() => {
         setIsDark(document.documentElement.classList.contains("dark"));
@@ -47,7 +52,8 @@ export default function Hero() {
                 for (let i = 1; i <= pdf.numPages; i++) {
                     const page = await pdf.getPage(i);
                     const text = await page.getTextContent();
-                    textContent += text.items.map((s: any) => s.str).join(' ');
+                    // Use the specific type here to fix the 'any' error
+                    textContent += text.items.map((s: PdfTextItem) => s.str).join(' ');
                 }
                 resumeText = textContent;
 
@@ -81,7 +87,6 @@ export default function Hero() {
 
     const callParseApi = async (text: string) => {
         try {
-            // Use the environment variable for the API URL
             const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/resumes/parse`;
 
             const response = await fetch(apiUrl, {
