@@ -1,3 +1,4 @@
+// frontend\src\app\components\landingpage\queries.tsx
 import Qna from "./qna";
 
 export default function Queries() {

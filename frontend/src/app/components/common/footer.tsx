@@ -1,3 +1,4 @@
+// frontend\src\app\components\common\footer.tsx
 export default function Footer() {
     return (
         <>

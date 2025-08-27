@@ -1,3 +1,4 @@
+// frontend\src\app\components\landingpage\qna.tsx
 "use client";
 
 import { useState } from "react";

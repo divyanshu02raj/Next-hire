@@ -1,3 +1,4 @@
+// frontend\src\app\components\landingpage\whyus.tsx
 import Image from "next/image";
 
 export default function Whyus() {

@@ -13,12 +13,11 @@ from app.models import ResumeInput, ResumeOutput
 load_dotenv()
 
 # --- Gemini API Configuration ---
-# This configures the API client with your secret key
 try:
     genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-    model = genai.GenerativeModel('gemini-1.5-flash') # Use a fast and capable model
+    model = genai.GenerativeModel('gemini-1.5-flash')
 except KeyError:
-    raise RuntimeError("GOOGLE_API_KEY not found in .env file. Please create a .env file and add your key.")
+    raise RuntimeError("GOOGLE_API_KEY not found. Please ensure it's in a .env file in your backend directory.")
 
 
 # --- FastAPI App Initialization ---
@@ -28,21 +27,26 @@ app = FastAPI(
     version="0.1.0",
 )
 
-origins = ["*"] # For development
+# --- CORS (Cross-Origin Resource Sharing) Configuration ---
+# This is the key to fixing the "Failed to fetch" error.
+# It explicitly tells the backend to allow web pages from http://localhost:3000
+# (your frontend) to make requests to it.
+origins = [
+    "http://localhost:3000",
+]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"], # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"], # Allows all headers
 )
 
 # --- Helper function for AI parsing ---
 def parse_resume_with_ai(resume_text: str) -> dict:
     """Sends resume text to Gemini and asks it to return structured JSON."""
     
-    # Define the desired JSON structure for the model
     json_schema = ResumeOutput.model_json_schema()
     
     prompt = f"""
@@ -66,11 +70,9 @@ def parse_resume_with_ai(resume_text: str) -> dict:
                 response_mime_type="application/json"
             )
         )
-        # The API is configured to return a JSON string, which we parse into a Python dict
         return json.loads(response.text)
     except Exception as e:
         print(f"An error occurred with the Gemini API: {e}")
-        # In case of an API error, we can raise an HTTPException to inform the client
         raise HTTPException(status_code=500, detail="Error processing resume with AI model.")
 
 

@@ -1,3 +1,5 @@
+// frontend\src\app\components\common\navbar.tsx
+
 'use client'
 
 import { Rocket } from "lucide-react";

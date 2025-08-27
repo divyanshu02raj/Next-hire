@@ -1,4 +1,3 @@
-# backend\app\models.py
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
@@ -7,16 +6,18 @@ class ResumeInput(BaseModel):
     resume_text: str = Field(..., example="John Doe\nAustin, TX\njohn.doe@email.com...")
 
 class WorkExperience(BaseModel):
-    job_title: str
-    company: str
+    # All fields are now Optional to handle cases where the AI can't find the data.
+    job_title: Optional[str] = None
+    company: Optional[str] = None
     location: Optional[str] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
-    description: List[str]
+    description: List[str] = []
 
 class Education(BaseModel):
-    degree: str
-    institution: str
+    # All fields are now Optional to handle cases where the AI can't find the data.
+    degree: Optional[str] = None
+    institution: Optional[str] = None
     location: Optional[str] = None
     graduation_date: Optional[str] = None
 
