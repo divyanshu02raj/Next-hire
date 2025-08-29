@@ -46,7 +46,7 @@ export default function Hero() {
                 // Dynamically import the PDF parsing library
                 const pdfjs = await import('pdfjs-dist/build/pdf');
                 const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
-                pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+                pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
                 const data = await file.arrayBuffer();
                 const pdf = await pdfjs.getDocument(data).promise;
@@ -58,13 +58,13 @@ export default function Hero() {
                     const page = await pdf.getPage(i);
                     // Get text content
                     const textContent = await page.getTextContent();
-                    textContentStr += textContent.items.map((item: any) => item.str).join(' ');
+                    textContentStr += textContent.items.map((item: { str: string }) => item.str).join(' ');
 
                     // Get link annotations
                     const annotations = await page.getAnnotations();
                     annotations
-                        .filter((annotation: any) => annotation.subtype === 'Link' && annotation.url)
-                        .forEach((annotation: any) => allUrls.push(annotation.url));
+                        .filter((annotation: { subtype: string; url?: string }) => annotation.subtype === 'Link' && annotation.url)
+                        .forEach((annotation: { url: string }) => allUrls.push(annotation.url));
                 }
 
                 extractedText = textContentStr;
@@ -105,6 +105,9 @@ export default function Hero() {
                 setIsLoading(false);
                 return;
             }
+            
+            // Save raw text to local storage to be used by other features later
+            localStorage.setItem('rawResumeText', extractedText);
             await callParseApi(extractedText);
 
         } catch (error) {
@@ -226,4 +229,3 @@ export default function Hero() {
         </div>
     );
 }
-
