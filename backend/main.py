@@ -1,6 +1,6 @@
-# backend\main.py
 import os
 import json
+import re
 import google.generativeai as genai
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,20 +27,17 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# --- CORS (Cross-Origin Resource Sharing) Configuration ---
-# This is the key to fixing the deployment error.
-# You must add your public Vercel frontend URL to this list.
-origins = [
-    "http://localhost:3000",  # For local development
-    "https://next-hire-lilac.vercel.app", # Your production frontend URL
-]
+# --- CORS Configuration ---
+# Reads the allowed origins from an environment variable for security
+origins_str = os.environ.get("CORS_ORIGINS", "http://localhost:3000")
+origins = [origin.strip() for origin in origins_str.split(',')]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"], # Allows all methods (GET, POST, etc.)
-    allow_headers=["*"], # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --- Helper function for AI parsing ---
@@ -50,9 +47,17 @@ def parse_resume_with_ai(resume_text: str) -> dict:
     json_schema = ResumeOutput.model_json_schema()
     
     prompt = f"""
-    You are an expert resume parser. Analyze the following resume text and extract the information
-    into a structured JSON object. The JSON object must strictly adhere to the following schema.
-    Do not add any extra explanations or introductory text outside of the JSON object.
+    You are an expert resume parser. Your task is to extract information into a structured JSON object
+    that strictly adheres to the provided schema. Do not add any extra explanations.
+
+    **CRITICAL INSTRUCTIONS FOR PROJECT URLS:**
+    The resume text below may contain a special section at the end, marked with "--- Extracted Hyperlinks ---".
+    This section contains a definitive list of all URLs found in the original document, including those that were hyperlinked to words like "Demo" or "Live Project".
+
+    Follow these rules to find the URL for each project:
+    1.  **Primary Method (Association):** For each project you identify, your main goal is to find its corresponding URL from the "Extracted Hyperlinks" list. Associate a URL with a project based on context, project titles, or surrounding text. This is the most reliable way to get the correct link.
+    2.  **Secondary Method (In-text Search):** If you cannot confidently associate a pre-extracted URL with a project, then (and only then) search that project's description for an explicitly written-out URL (e.g., "https://...").
+    3.  **Final Rule:** If you cannot find a URL for a project using either of these methods, you MUST leave the 'url' field as null. Do not use placeholder words like "demo" as the URL.
 
     JSON Schema:
     {json.dumps(json_schema, indent=2)}
@@ -70,9 +75,25 @@ def parse_resume_with_ai(resume_text: str) -> dict:
                 response_mime_type="application/json"
             )
         )
-        return json.loads(response.text)
+        # --- Robust JSON Parsing ---
+        # Find the JSON block within the response text, ignoring potential markdown
+        response_text = response.text
+        match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
+        if match:
+            json_str = match.group(1)
+        else:
+            # Fallback for plain JSON without markdown
+            start_index = response_text.find('{')
+            end_index = response_text.rfind('}') + 1
+            if start_index != -1 and end_index != 0:
+                 json_str = response_text[start_index:end_index]
+            else:
+                raise ValueError("No valid JSON object found in the AI response.")
+
+        return json.loads(json_str)
+
     except Exception as e:
-        print(f"An error occurred with the Gemini API: {e}")
+        print(f"An error occurred with the Gemini API or JSON parsing: {e}")
         raise HTTPException(status_code=500, detail="Error processing resume with AI model.")
 
 
@@ -92,3 +113,4 @@ async def parse_resume(resume_in: ResumeInput):
     """
     parsed_data = parse_resume_with_ai(resume_in.resume_text)
     return ResumeOutput(**parsed_data)
+
