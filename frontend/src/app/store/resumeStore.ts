@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 
-// --- Type Definitions for the Resume Data Structure ---
+// --- Type Definitions for our data structures ---
 
-interface WorkExperience {
+// Represents a single work experience entry
+export interface WorkExperience {
     job_title?: string | null;
     company?: string | null;
     location?: string | null;
@@ -11,22 +12,23 @@ interface WorkExperience {
     description?: string[];
 }
 
-interface Education {
+// Represents a single education entry
+export interface Education {
     degree?: string | null;
     institution?: string | null;
     location?: string | null;
     graduation_date?: string | null;
 }
 
-interface Project {
-    name?: string | null; // This was the missing field
-    technologies?: string[] | null;
+// Represents a single project entry
+export interface Project {
+    name?: string | null;
     description?: string[] | null;
     url?: string | null;
 }
 
-// This is the main data structure for the entire resume
-interface ResumeData {
+// Represents the entire structured resume data
+export interface ResumeData {
     full_name?: string | null;
     email?: string | null;
     phone_number?: string | null;
@@ -42,13 +44,19 @@ interface ResumeData {
 
 // --- Zustand Store Definition ---
 
-interface ResumeStore {
+// Defines the shape of our store's state
+interface ResumeStoreState {
     resumeData: ResumeData | null;
+    rawResumeText: string | null; // <-- ADDED
     setResumeData: (data: ResumeData) => void;
+    setRawResumeText: (text: string) => void; // <-- ADDED
 }
 
-export const useResumeStore = create<ResumeStore>((set) => ({
+// Create the store with state and actions
+export const useResumeStore = create<ResumeStoreState>((set) => ({
     resumeData: null,
+    rawResumeText: null, // <-- ADDED
     setResumeData: (data) => set({ resumeData: data }),
+    setRawResumeText: (text) => set({ rawResumeText: text }), // <-- ADDED
 }));
 
