@@ -1,3 +1,5 @@
+# backend/app/models.py
+
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
@@ -25,6 +27,7 @@ class Project(BaseModel):
     name: Optional[str] = None
     description: Optional[List[str]] = None
     url: Optional[str] = None
+    tech_stack: Optional[List[str]] = None # <-- ADDED
 
 class ResumeOutput(BaseModel):
     """The structured data returned by the API after initial parsing."""
@@ -53,4 +56,3 @@ class ATSAnalysisOutput(BaseModel):
     matching_keywords: List[str] = Field(..., description="Keywords found in both the resume and job description.")
     missing_keywords: List[str] = Field(..., description="Keywords found in the job description but not in the resume.")
     summary: str = Field(..., description="A brief summary of why the resume is a good or bad fit.")
-

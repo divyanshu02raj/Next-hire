@@ -1,3 +1,4 @@
+// frontend/src/app/store/resumeStore.ts
 import { create } from 'zustand';
 
 // --- Type Definitions for our data structures ---
@@ -25,6 +26,7 @@ export interface Project {
     name?: string | null;
     description?: string[] | null;
     url?: string | null;
+    tech_stack?: string[] | null; // <-- ADDED
 }
 
 // Represents the entire structured resume data
@@ -47,16 +49,15 @@ export interface ResumeData {
 // Defines the shape of our store's state
 interface ResumeStoreState {
     resumeData: ResumeData | null;
-    rawResumeText: string | null; // <-- ADDED
+    rawResumeText: string | null;
     setResumeData: (data: ResumeData) => void;
-    setRawResumeText: (text: string) => void; // <-- ADDED
+    setRawResumeText: (text: string) => void;
 }
 
 // Create the store with state and actions
 export const useResumeStore = create<ResumeStoreState>((set) => ({
     resumeData: null,
-    rawResumeText: null, // <-- ADDED
+    rawResumeText: null,
     setResumeData: (data) => set({ resumeData: data }),
-    setRawResumeText: (text) => set({ rawResumeText: text }), // <-- ADDED
+    setRawResumeText: (text) => set({ rawResumeText: text }),
 }));
-
