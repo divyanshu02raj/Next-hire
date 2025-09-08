@@ -1,4 +1,4 @@
-// frontend/src/app/components/dashboard/AtsCheckerTab.tsx
+// frontend\src\app\components\dashboard\AtsCheckerTab.tsx
 'use client';
 
 import { useState } from 'react';
@@ -111,7 +111,7 @@ const AtsCheckerTab: React.FC<AtsCheckerTabProps> = ({ rawResumeText }) => {
                                     />
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="text-4xl font-bold text-primary">{atsResult.match_score}<span className="text-2xl"></span></span>
+                                    <span className="text-4xl font-bold text-primary">{atsResult.match_score}<span className="text-2xl">%</span></span>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ const AtsCheckerTab: React.FC<AtsCheckerTabProps> = ({ rawResumeText }) => {
                         </div>
                     </div>
 
-                    {/* --- NEW: AI-Powered Optimization Suggestions --- */}
+                    {/* --- AI-Powered Optimization Suggestions --- */}
                     {atsResult.rewrite_suggestions && atsResult.rewrite_suggestions.length > 0 && (
                         <div className="mb-6">
                             <h4 className="text-xl font-semibold text-dark dark:text-light mb-4 flex items-center"><Wand2 className="mr-2 text-primary"/>AI-Powered Optimization Suggestions</h4>
@@ -145,7 +145,7 @@ const AtsCheckerTab: React.FC<AtsCheckerTabProps> = ({ rawResumeText }) => {
                                     <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg">
                                         <div>
                                             <h5 className="font-semibold text-red-600 dark:text-red-400 mb-2">Original Bullet Point:</h5>
-                                            <p className="text-sm text-stone-500 italic">"{suggestion.original_bullet}"</p>
+                                            <p className="text-sm text-stone-500 italic">&quot;{suggestion.original_bullet}&quot;</p>
                                         </div>
                                         <div>
                                             <h5 className="font-semibold text-green-600 dark:text-green-400 mb-2">Suggested Improvement:</h5>
