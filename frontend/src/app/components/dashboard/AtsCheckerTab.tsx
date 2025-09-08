@@ -13,7 +13,7 @@ interface KeywordAnalysis {
 }
 
 interface RewriteSuggestion {
-    original_bullet_point: string;
+    original_bullet: string;
     suggested_improvement: string;
 }
 
