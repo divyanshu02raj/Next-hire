@@ -6,8 +6,8 @@ import { useResumeStore } from '@/app/store/resumeStore';
 import { BarChart, BookOpen } from 'lucide-react';
 
 // Import the new child components
-import ResumeDetailsTab from '@/app/dashboard/ResumeDetailsTab';
-import AtsCheckerTab from '@/app/dashboard/AtsCheckerTab';
+import ResumeDetailsTab from '@/app/components/dashboard/ResumeDetailsTab';
+import AtsCheckerTab from '@/app/components/dashboard/AtsCheckerTab';
 
 export default function DashboardPage() {
     const router = useRouter();

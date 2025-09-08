@@ -29,19 +29,40 @@ export interface Project {
     tech_stack?: string[] | null; // <-- ADDED
 }
 
-// Represents the entire structured resume data
+// Represents categorized skills
+export interface CategorizedSkills {
+    programming_languages?: string[];
+    frameworks_libraries?: string[];
+    databases?: string[];
+    cloud_technologies?: string[];
+    tools_platforms?: string[];
+}
+
+// Represents a professional certification
+export interface Certification {
+    name?: string | null;
+    organization?: string | null;
+    date?: string | null;
+}
+
+// Represents the entire, enhanced resume data
 export interface ResumeData {
     full_name?: string | null;
     email?: string | null;
     phone_number?: string | null;
+    location?: string | null; // <-- ADDED
     linkedin_url?: string | null;
     github_url?: string | null;
+    portfolio_url?: string | null; // <-- ADDED
     summary?: string | null;
-    skills?: string[];
+    categorized_skills?: CategorizedSkills; // <-- UPGRADED
     work_experience?: WorkExperience[];
     education?: Education[];
     projects?: Project[];
+    certifications?: Certification[]; // <-- ADDED
     achievements?: string[];
+    publications?: string[]; // <-- ADDED
+    languages?: { language: string; proficiency: string }[]; // <-- ADDED
 }
 
 // --- Zustand Store Definition ---
