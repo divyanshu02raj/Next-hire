@@ -9,7 +9,7 @@ import time
 load_dotenv()
 try:
     genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-flash-latest')
 except KeyError:
     raise RuntimeError("GOOGLE_API_KEY not found in .env file.")
 
