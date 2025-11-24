@@ -60,7 +60,7 @@ class ResumeOutput(BaseModel):
     github_url: Optional[str] = None
     portfolio_url: Optional[str] = None
     summary: Optional[str] = None
-    categorized_skills: Optional[CategorizedSkills] = None # Replaces simple skills list
+    categorized_skills: Optional[CategorizedSkills] = None 
     work_experience: List[WorkExperience] = []
     education: List[Education] = []
     projects: List[Project] = []
