@@ -1,0 +1,29 @@
+/* frontend\src\app\globals.css */
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Andenver";
+  src: url("/fonts/Andenver.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@theme {
+  --font-primary: "Andenver", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+  --color-dark: #121212;
+  --color-light: #FFFFF8;
+  --color-primary: #FF9500;
+}
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .bg-grid-white {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white'%3E%3Cpath d='M0 .5H31.5V32 M.5 0V31.5'/%3E%3C/svg%3E");
+  }
+  .bg-grid-black {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='black'%3E%3Cpath d='M0 .5H31.5V32 M.5 0V31.5'/%3E%3C/svg%3E");
+  }
+}
