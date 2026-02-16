@@ -47,7 +47,7 @@ Experience **Next-hire** in action:
 10. [How to Run Locally](#10-how-to-run-locally)
 11. [Future Enhancements](#11-future-enhancements)
 12. [Contributing](#12-contributing)
-13. [Author](#13-author)
+13. [Contributors](#13-contributors)
 
 ---
 
@@ -251,10 +251,16 @@ npm run dev
 4. Push to the Branch (`git push origin feature/AmazingFeature`).
 5. Open a Pull Request.
 
-## 13. Author
+## 13. Contributors
 
-**Divyanshu Raj**
-📧 [Email Me](mailto:divyanshuraj2206@gmail.com) | 🌐 [LinkedIn](https://www.linkedin.com/in/div02raj) | 💼 [GitHub](https://github.com/divyanshuraj2206)
+Made with ❤️ by:
+
+- **Divyanshu Raj** ([@divyanshu02raj](https://github.com/divyanshu02raj)) | [LinkedIn](https://www.linkedin.com/in/div02raj) | [Email](mailto:divyanshuraj2206@gmail.com)
+- **Harsh Singh Parihar** ([@ALaiNPLayZ](https://github.com/ALaiNPLayZ)) | [LinkedIn](https://linkedin.com/in/harsh-parihar-908944251) | [Email](mailto:harshsinghparihar9467@gmail.com)
+- **Nikhil Dhanda** ([@nikhildhanda04](https://github.com/nikhildhanda04)) | [LinkedIn](https://linkedin.com/in/nikkhildhanda) | [Email](mailto:nikhildhanda84@gmail.com)
+- **Aditi Sinharoy** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/aditi-sinharoy) | [Email](mailto:aditisinharoy0301@gmail.com)
+- **Aman Yadav** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/aman-yadav-ba1388250) | [Email](mailto:amanyadavji9099@gmail.com)
+- **Vaibhav Parekh** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/placeholder) | [Email](mailto:placeholder@email.com)
 
 ---
 *Next-hire: Accelerating your career with Hybrid Intelligence.*

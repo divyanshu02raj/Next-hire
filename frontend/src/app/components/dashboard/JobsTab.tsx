@@ -28,6 +28,13 @@ interface JobSearchResponse {
     filters_used: JobFilters;
 }
 
+interface JobApplyResponse {
+    job_id: string;
+    status: string;
+    missing_fields: string[];
+    message?: string;
+}
+
 interface SwipeOverlayProps {
     jobs: JobPosting[];
     isOpen: boolean;
@@ -378,11 +385,11 @@ const JobsTab = () => {
             body: JSON.stringify(payload),
         });
 
-        const data = await response.json();
-        const successes = data.filter((item: any) => item.status === 'submitted');
-        const needsInfo = data.filter((item: any) => item.status === 'needs_more_info');
+        const data: JobApplyResponse[] = await response.json();
+        const successes = data.filter((item) => item.status === 'submitted');
+        const needsInfo = data.filter((item) => item.status === 'needs_more_info');
 
-        successes.forEach((item: any) => markJobApplied(item.job_id));
+        successes.forEach((item) => markJobApplied(item.job_id));
 
         setApplyAllSummary(
             `Applied to ${successes.length} jobs. ${needsInfo.length ? `${needsInfo.length} need more info.` : 'All set!'}`
