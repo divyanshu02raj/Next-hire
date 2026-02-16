@@ -1,7 +1,7 @@
 # Next-hire
 
 <p align="center">
-  <img src="frontend/public/next.svg" alt="Next-hire Logo" width="200"/>
+  <img src="Screenshots/Dark Theme Logo.png" alt="Next-hire Logo" width="200"/>
 </p>
 
 <p align="center">
@@ -14,6 +14,9 @@
   </a>
   <a href="https://github.com/divyanshu02raj/Next-hire/stargazers">
     <img src="https://img.shields.io/github/stars/divyanshu02raj/Next-hire?style=social&logo=github" alt="GitHub stars">
+  </a>
+  <a href="https://next-hire-lilac.vercel.app">
+    <img src="https://img.shields.io/badge/Live-Demo-brightgreen?logo=vercel" alt="Live Demo">
   </a>
 </p>
 
@@ -30,7 +33,7 @@
 
 Experience **Next-hire** in action:
 
-- **Live Demo:** [Coming Soon]
+- **Live Demo:** [next-hire-lilac.vercel.app](https://next-hire-lilac.vercel.app)
 - **Video Demo:** [Watch the Walkthrough]
 - **Source Code:** [GitHub Repository](https://github.com/divyanshu02raj/Next-hire)
 
@@ -258,9 +261,9 @@ Made with ❤️ by:
 - **Divyanshu Raj** ([@divyanshu02raj](https://github.com/divyanshu02raj)) | [LinkedIn](https://www.linkedin.com/in/div02raj) | [Email](mailto:divyanshuraj2206@gmail.com)
 - **Harsh Singh Parihar** ([@ALaiNPLayZ](https://github.com/ALaiNPLayZ)) | [LinkedIn](https://linkedin.com/in/harsh-parihar-908944251) | [Email](mailto:harshsinghparihar9467@gmail.com)
 - **Nikhil Dhanda** ([@nikhildhanda04](https://github.com/nikhildhanda04)) | [LinkedIn](https://linkedin.com/in/nikkhildhanda) | [Email](mailto:nikhildhanda84@gmail.com)
-- **Aditi Sinharoy** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/aditi-sinharoy) | [Email](mailto:aditisinharoy0301@gmail.com)
+- **Aditi Sinharoy** ([@aditi030105](https://github.com/aditi030105)) | [LinkedIn](https://linkedin.com/in/aditi-sinharoy) | [Email](mailto:aditisinharoy0301@gmail.com)
 - **Aman Yadav** ([@Amanydv16](https://github.com/Amanydv16)) | [LinkedIn](https://linkedin.com/in/aman-yadav-ba1388250) | [Email](mailto:amanyadavji9099@gmail.com)
-- **Vaibhav Parekh** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://www.linkedin.com/in/vaibhav-parekh-86255a251) | [Email](mailto:vaibhavparekh0704@gmail.com)
+- **Vaibhav Parekh** ([@VaibhavParekh27034](https://github.com/VaibhavParekh27034)) | [LinkedIn](https://www.linkedin.com/in/vaibhav-parekh-86255a251) | [Email](mailto:vaibhavparekh0704@gmail.com)
 
 ---
 *Next-hire: Accelerating your career with Hybrid Intelligence.*
