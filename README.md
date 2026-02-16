@@ -259,8 +259,8 @@ Made with ❤️ by:
 - **Harsh Singh Parihar** ([@ALaiNPLayZ](https://github.com/ALaiNPLayZ)) | [LinkedIn](https://linkedin.com/in/harsh-parihar-908944251) | [Email](mailto:harshsinghparihar9467@gmail.com)
 - **Nikhil Dhanda** ([@nikhildhanda04](https://github.com/nikhildhanda04)) | [LinkedIn](https://linkedin.com/in/nikkhildhanda) | [Email](mailto:nikhildhanda84@gmail.com)
 - **Aditi Sinharoy** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/aditi-sinharoy) | [Email](mailto:aditisinharoy0301@gmail.com)
-- **Aman Yadav** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/aman-yadav-ba1388250) | [Email](mailto:amanyadavji9099@gmail.com)
-- **Vaibhav Parekh** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://linkedin.com/in/placeholder) | [Email](mailto:placeholder@email.com)
+- **Aman Yadav** ([@Amanydv16](https://github.com/Amanydv16)) | [LinkedIn](https://linkedin.com/in/aman-yadav-ba1388250) | [Email](mailto:amanyadavji9099@gmail.com)
+- **Vaibhav Parekh** ([@placeholder](https://github.com/placeholder)) | [LinkedIn](https://www.linkedin.com/in/vaibhav-parekh-86255a251) | [Email](mailto:vaibhavparekh0704@gmail.com)
 
 ---
 *Next-hire: Accelerating your career with Hybrid Intelligence.*
